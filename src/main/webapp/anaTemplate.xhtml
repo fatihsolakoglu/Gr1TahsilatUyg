@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,20 +14,39 @@
 
     <h:body>
 
-        <div id="top">
-            <ui:insert name="top">Top</ui:insert>
-        </div>
-        <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
-            </div>
-            <div id="content" class="left_content">
+
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+
+                <ui:insert name="top">
+                    <table border="0">
+                        <tr>
+                            <td style="width: 20%"> <p:graphicImage library="img" name="ptt.png" style="width: 40%"/></td>
+                             <td style="width: 80%"> <h2>TAHSİLAT UYGULAMASI</h2></td>
+                                
+                        </tr>
+                    </table>    
+                    
+                </ui:insert>
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <ui:insert name="bottom">Bottom</ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                <ui:insert name="left"><p:menu model="#{tahsilatMenuBean.simpleMenuModel}" style="width: 95%"/></ui:insert>
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="center">
                 <ui:insert name="content">Content</ui:insert>
-            </div>
-        </div>
-        <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
-        </div>
+            </p:layoutUnit>
+
+        </p:layout>
 
     </h:body>
 
