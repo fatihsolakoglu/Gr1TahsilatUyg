@@ -1,14 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./anaTemplate.xhtml">
 
             <ui:define name="content">
-                content
+                <h:form id="girisForm">
+                    <p:panel header="Giriş Ekranı">
+                        
+                        <p:growl showDetail="true"/>
+                        
+                        <p:panelGrid columns="3">
+                            <f:facet name="header">
+                                <p:outputLabel value="Giriş Bilgileri"></p:outputLabel>
+                            </f:facet>
+                            
+                            <p:outputLabel value="Kullanıcı Adı:"/>
+                            <p:inputText id="kulAd" label="Kullanıcı Ad" 
+                                         value="#{tahsilatKisiBean.kisi.kullaniciAd}" required="true">
+                            
+                                <p:ajax event="keyup" update="kulAdMsg"/>
+                            </p:inputText>
+                            <p:message for="kulAd" id="kulAdMsg"/>
+                            
+                            <p:outputLabel value="Kullanıcı Şifre"/>
+                            <p:password id="kulSifre" label="Kullanıcı Şİfre" 
+                                         value="#{tahsilatKisiBean.kisi.sifre}" required="true">
+                            
+                                <p:ajax event="keyup" update="kulSifreMsg"/>
+                            </p:password>>
+                            <p:message for="kulSifre" id="kulSifreMsg"/>
+                            
+                            <f:facet name="footer">
+                                <p:commandButton value="Giriş" action="#{tahsilatKisiBean.girisKontrol()}" update="girisForm"/>
+                            </f:facet>
+                                    
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
             </ui:define>
 
         </ui:composition>

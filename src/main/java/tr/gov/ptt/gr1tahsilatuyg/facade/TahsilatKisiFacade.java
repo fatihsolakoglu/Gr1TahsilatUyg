@@ -28,4 +28,21 @@ public class TahsilatKisiFacade extends AbstractFacade<TahsilatKisi> {
         super(TahsilatKisi.class);
     }
     
+    
+    public TahsilatKisi giriseYetkilimi(TahsilatKisi kisi)  
+    {
+          try {
+              
+                return (TahsilatKisi)em.createNamedQuery("TahsilatKisi.giriseYetkilimi").
+                setParameter("kullaniciAd", kisi.getKullaniciAd()).
+                setParameter("sifre", kisi.getSifre()).getSingleResult();
+            
+        } catch (Exception e) {
+        }
+          return null;
+               
+    }
+    
+    
+    
 }

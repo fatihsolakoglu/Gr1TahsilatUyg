@@ -31,6 +31,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "TahsilatKisi.findAll", query = "SELECT t FROM TahsilatKisi t"),
     @NamedQuery(name = "TahsilatKisi.findById", query = "SELECT t FROM TahsilatKisi t WHERE t.id = :id"),
     @NamedQuery(name = "TahsilatKisi.findByAd", query = "SELECT t FROM TahsilatKisi t WHERE t.ad = :ad"),
+    @NamedQuery(name = "TahsilatKisi.giriseYetkilimi", query = "SELECT t FROM TahsilatKisi t WHERE t.kullaniciAd = :kullaniciAd and t.sifre = :sifre"),
     @NamedQuery(name = "TahsilatKisi.findBySoyad", query = "SELECT t FROM TahsilatKisi t WHERE t.soyad = :soyad"),
     @NamedQuery(name = "TahsilatKisi.findByKullaniciAd", query = "SELECT t FROM TahsilatKisi t WHERE t.kullaniciAd = :kullaniciAd"),
     @NamedQuery(name = "TahsilatKisi.findBySifre", query = "SELECT t FROM TahsilatKisi t WHERE t.sifre = :sifre"),
