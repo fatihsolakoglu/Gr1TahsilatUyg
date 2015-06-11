@@ -19,14 +19,34 @@ public class TahsilatKisiBean {
     private TahsilatKisiService kisiService;
     
     private TahsilatKisi kisi;
+    private List<String> temaListesi;
     
    
 
     public TahsilatKisiBean() {
         kisi= new TahsilatKisi();
+        temaListesi=new ArrayList<String>();
+        kisi.setTema("sunny");
+        temaListesiDoldur();
+        
+    }
+    
+    public void temaListesiDoldur()
+    {
+        temaListesi.add("sunny");
+        temaListesi.add("afterdark");
+        temaListesi.add("afternoon");
+        temaListesi.add("bluesky");
+        temaListesi.add("cupertino");
+        temaListesi.add("vader");
         
     }
 
+    public List<String> getTemaListesi() {
+        return temaListesi;
+    }
+    
+   
 
     public TahsilatKisi getKisi() {
         return kisi;
@@ -55,6 +75,16 @@ public class TahsilatKisiBean {
         }
     }
     
+    public String guvenliCikis()
+    {
+        HttpSession session=JSFUtil.getSession();
+        session.invalidate();
+        return "giris.xhtml?faces-redirect=true";
+    }
     
+    public void temaKaydet()
+    {
+        kisiService.kisiGuncelle(kisi);
+    }
     
 }

@@ -23,7 +23,7 @@ public class TahsilatMenuBean {
     private MenuModel simpleMenuModel = new DefaultMenuModel();
     
     @ManagedProperty("#{tahsilatKisiBean}")
-    private TahsilatKisiBean tahsilatKisiBean;
+    private TahsilatKisiBean kisiBean;
    
     public TahsilatMenuBean() {
         
@@ -32,7 +32,7 @@ public class TahsilatMenuBean {
     @PostConstruct
     public void init()
     {
-         List<TahsilatMenu> menuListesi=tahsilatKisiBean.getKisi().getTahsilatMenuList();
+         List<TahsilatMenu> menuListesi=kisiBean.getKisi().getTahsilatMenuList();
         
         DefaultSubMenu subMenu= new DefaultSubMenu();
         subMenu.setLabel("Kullanıcı İşlemleri");
@@ -44,7 +44,7 @@ public class TahsilatMenuBean {
             
             menuItem=new DefaultMenuItem();
             menuItem.setValue(menu.getBaslik());
-            menuItem.setUrl(menu.getLink()+".xhtml?faces-redirect=true");
+            menuItem.setCommand(menu.getLink());
             subMenu.addElement(menuItem);
             
         }
@@ -52,9 +52,15 @@ public class TahsilatMenuBean {
         simpleMenuModel.addElement(subMenu);
     }
 
-    public void setTahsilatKisiBean(TahsilatKisiBean tahsilatKisiBean) {
-        this.tahsilatKisiBean = tahsilatKisiBean;
+    public TahsilatKisiBean getKisiBean() {
+        return kisiBean;
     }
+
+    public void setKisiBean(TahsilatKisiBean kisiBean) {
+        this.kisiBean = kisiBean;
+    }
+    
+    
     
     public MenuModel getSimpleMenuModel() {
         return simpleMenuModel;

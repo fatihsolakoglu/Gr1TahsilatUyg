@@ -59,6 +59,11 @@ public class TahsilatKisi implements Serializable {
     @Size(max = 1)
     @Column(name = "ROL")
     private String rol;
+    
+    @Size(max = 50)
+    @Column(name = "TEMA")
+    private String tema;
+    
     @JoinTable(name = "THS_KISI_MENU", joinColumns = {
         @JoinColumn(name = "KISI_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "MENU_ID", referencedColumnName = "ID")})
@@ -119,6 +124,16 @@ public class TahsilatKisi implements Serializable {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    public String getTema() {
+        return tema;
+    }
+
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+    
+    
 
     public List<TahsilatMenu> getTahsilatMenuList() {
         return tahsilatMenuList;
