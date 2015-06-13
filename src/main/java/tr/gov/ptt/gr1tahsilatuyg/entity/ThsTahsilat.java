@@ -53,7 +53,7 @@ public class ThsTahsilat implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date islemTrh;
     @Column(name = "KISI_SIRA_NO")
-    private BigInteger kisiSiraNo;
+    private Integer kisiSiraNo;
     @Column(name = "TUTAR")
     private BigDecimal tutar;
     @OneToMany(mappedBy = "tahsilat",cascade = CascadeType.ALL)
@@ -78,6 +78,14 @@ public class ThsTahsilat implements Serializable {
         this.kisi = kisi;
     }
 
+    public TahsilatKurum getKurum() {
+        return kurum;
+    }
+
+    public void setKurum(TahsilatKurum kurum) {
+        this.kurum = kurum;
+    }
+
    
 
     public BigDecimal getId() {
@@ -96,11 +104,11 @@ public class ThsTahsilat implements Serializable {
         this.islemTrh = islemTrh;
     }
 
-    public BigInteger getKisiSiraNo() {
+    public Integer getKisiSiraNo() {
         return kisiSiraNo;
     }
 
-    public void setKisiSiraNo(BigInteger kisiSiraNo) {
+    public void setKisiSiraNo(Integer kisiSiraNo) {
         this.kisiSiraNo = kisiSiraNo;
     }
 

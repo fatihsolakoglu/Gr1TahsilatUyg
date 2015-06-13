@@ -70,6 +70,9 @@ public class TahsilatKisi implements Serializable {
     @Column(name = "TEMA")
     private String tema;
     
+    @Column(name = "SIRANO")
+    private Integer siraNo;
+    
     @JoinTable(name = "THS_KISI_MENU", joinColumns = {
     @JoinColumn(name = "KISI_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
     @JoinColumn(name = "MENU_ID", referencedColumnName = "ID")})
@@ -83,6 +86,14 @@ public class TahsilatKisi implements Serializable {
     public TahsilatKisi() {
     }
 
+    public Integer getSiraNo() {
+        return siraNo;
+    }
+
+    public void setSiraNo(Integer siraNo) {
+        this.siraNo = siraNo;
+    }
+    
     public List<ThsTahsilat> getThsTahsilatList() {
         return thsTahsilatList;
     }

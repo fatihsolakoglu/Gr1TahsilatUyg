@@ -93,6 +93,18 @@
                         </p:column>
                         
                     </p:panelGrid>
+                    
+                <br/>
+                <p:commandButton value="ÖDE" action="#{tahsilatBorcBean.seciliFaturalariOde()}" update="@form" icon="ui-icon-check">
+                
+                    <p:confirm header="Onay İsteği" message="Ödemek İstiyor musunuz?" icon="ui-icon-circle-check"/>
+                </p:commandButton>
+                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                
                 </h:form>
             </ui:define>
 
