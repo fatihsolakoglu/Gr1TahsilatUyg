@@ -27,10 +27,7 @@ import tr.gov.ptt.gr1tahsilatuyg.facade.TahsilatKisiFacade;
 import tr.gov.ptt.gr1tahsilatuyg.facade.TahsilatKurumFacade;
 import tr.gov.ptt.gr1tahsilatuyg.facade.ThsTahsilatFacade;
 
-/**
- *
- * @author Administrator
- */
+
 @Stateless
 @TransactionManagement(value=TransactionManagementType.BEAN)
 public class TahsilatBorcService {
@@ -130,11 +127,7 @@ public class TahsilatBorcService {
         } catch (Exception ex) {
             try {
                 userTransaction.rollback();
-            } catch (IllegalStateException ex1) {
-                Logger.getLogger(TahsilatBorcService.class.getName()).log(Level.SEVERE, null, ex1);
-            } catch (SecurityException ex1) {
-                Logger.getLogger(TahsilatBorcService.class.getName()).log(Level.SEVERE, null, ex1);
-            } catch (SystemException ex1) {
+            } catch (IllegalStateException | SecurityException | SystemException ex1) {
                 Logger.getLogger(TahsilatBorcService.class.getName()).log(Level.SEVERE, null, ex1);
             }
         } 
