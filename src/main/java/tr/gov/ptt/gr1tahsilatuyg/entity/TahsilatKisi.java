@@ -19,6 +19,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -70,18 +71,27 @@ public class TahsilatKisi implements Serializable {
     private String tema;
     
     @JoinTable(name = "THS_KISI_MENU", joinColumns = {
-        @JoinColumn(name = "KISI_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "MENU_ID", referencedColumnName = "ID")})
+    @JoinColumn(name = "KISI_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
+    @JoinColumn(name = "MENU_ID", referencedColumnName = "ID")})
     @ManyToMany
     private List<TahsilatMenu> tahsilatMenuList;
 
+    
+    @OneToMany(mappedBy = "kisi")
+    private List<ThsTahsilat> thsTahsilatList;
+    
     public TahsilatKisi() {
     }
 
-    public TahsilatKisi(BigDecimal id) {
-        this.id = id;
+    public List<ThsTahsilat> getThsTahsilatList() {
+        return thsTahsilatList;
     }
 
+    public void setThsTahsilatList(List<ThsTahsilat> thsTahsilatList) {
+        this.thsTahsilatList = thsTahsilatList;
+    }
+
+    
     public BigDecimal getId() {
         return id;
     }

@@ -47,13 +47,22 @@ public class TahsilatKurum implements Serializable {
     private String ad;
     @OneToMany(mappedBy = "kurum")
     private List<TahsilatBorc> tahsilatBorcList;
+    
+    @OneToMany(mappedBy = "kurum")
+    private List<ThsTahsilat> thsTahsilatList;
 
     public TahsilatKurum() {
     }
 
-    public TahsilatKurum(BigDecimal id) {
-        this.id = id;
+    public List<ThsTahsilat> getThsTahsilatList() {
+        return thsTahsilatList;
     }
+
+    public void setThsTahsilatList(List<ThsTahsilat> thsTahsilatList) {
+        this.thsTahsilatList = thsTahsilatList;
+    }
+
+   
 
     public BigDecimal getId() {
         return id;
