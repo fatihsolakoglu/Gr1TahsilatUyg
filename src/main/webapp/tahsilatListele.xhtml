@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./anaTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="listeleForm">
+                    
+                    <p:panelGrid columns="2">
+                        <p:column>
+                            <p:outputLabel value="Kurum Adı"/>      
+                        </p:column>
+                        
+                         <p:column>
+                             <p:outputLabel value="#{tahsilatBorcBean.tahsilatBorc.kurum.ad}"/>      
+                        </p:column>
+                        
+                        <p:column>
+                            <p:outputLabel value="Adı Soyadı"/>      
+                        </p:column>
+                        
+                         <p:column>
+                             <p:outputLabel value="#{tahsilatBorcBean.yildizliGetir(tahsilatBorcBean.borcListesi[0].aboneAd)} #{tahsilatBorcBean.yildizliGetir(tahsilatBorcBean.borcListesi[0].aboneSoyad)}"/>      
+                        </p:column>
+                        
+                    </p:panelGrid>
+                    
+                    <p:dataTable id="faturaTablo" var="borc" 
+                                 value="#{tahsilatBorcBean.borcListesi}"
+                                 selection="#{tahsilatBorcBean.seciliBorclar}"
+                                 rowKey="#{borc.id}"
+                                 scrollable="true"
+                                 scrollHeight="120px">
+                        
+                        <p:ajax event="rowSelectCheckbox" listener="#{tahsilatBorcBean.hesapla()}" update="listeleForm"/>
+                        <p:ajax event="rowUnselectCheckbox" listener="#{tahsilatBorcBean.hesapla()}" update="listeleForm"/>
+                        <p:ajax event="toggleSelect" listener="#{tahsilatBorcBean.hesapla()}" update="listeleForm"/>
+                        
+                        <f:facet name="header">ÖDENECEK FATURALAR</f:facet>
+                        
+                        <p:column selectionMode="multiple" style="width: 16px"></p:column>
+                        
+                        <p:column headerText="Fatura No">
+                            <p:outputLabel value="#{borc.faturaNo}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Son Ödeme Tarihi">
+                             <p:outputLabel value="#{borc.faturaSonOdemeTrh}">
+                             <f:convertDateTime pattern="dd/MM/yyyy"/>
+                             </p:outputLabel>
+                        </p:column>
+                        
+                        <p:column headerText="Tutar">
+                             <p:outputLabel value="#{borc.faturaTutar}"/>
+                        </p:column>
+                        
+                    </p:dataTable>
+                    <br/>
+                    <p:panelGrid columns="2">
+                        
+                        <p:column>
+                            <p:outputLabel id="toplam" value="Toplam:"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <p:outputLabel value="#{tahsilatBorcBean.toplam}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <p:outputLabel value="Alınan"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <p:inputText id="alinan" value="#{tahsilatBorcBean.alinan}">
+                            
+                                <p:ajax event="keyup" listener="#{tahsilatBorcBean.paraUstuHesapla()}" update="paraUstu"/>
+                            </p:inputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <p:outputLabel  value="Para Üstü:"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <p:outputLabel id="paraUstu" value="#{tahsilatBorcBean.para_ustu}"/>
+                        </p:column>
+                        
+                    </p:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

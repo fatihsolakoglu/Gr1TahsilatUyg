@@ -11,10 +11,13 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,6 +40,8 @@ public class TahsilatMenu implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
+    @SequenceGenerator(name = "menuseq",sequenceName = "SEQ_THS_MENU",initialValue = 1,allocationSize = 1)
+    @GeneratedValue(generator = "menuseq",strategy = GenerationType.SEQUENCE)
     private BigDecimal id;
     @Size(max = 50)
     @Column(name = "BASLIK")

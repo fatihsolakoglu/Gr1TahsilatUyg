@@ -11,11 +11,14 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +34,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "TahsilatBorc.findAll", query = "SELECT t FROM TahsilatBorc t"),
     @NamedQuery(name = "TahsilatBorc.findById", query = "SELECT t FROM TahsilatBorc t WHERE t.id = :id"),
+    @NamedQuery(name = "TahsilatBorc.borcBulKurumIdAboneNo", query = "SELECT t FROM TahsilatBorc t WHERE t.aboneNo = :aboneNo and t.kurum.id= :kurumId and t.faturaDurum=0"),
     @NamedQuery(name = "TahsilatBorc.findByAboneNo", query = "SELECT t FROM TahsilatBorc t WHERE t.aboneNo = :aboneNo"),
     @NamedQuery(name = "TahsilatBorc.findByAboneAd", query = "SELECT t FROM TahsilatBorc t WHERE t.aboneAd = :aboneAd"),
     @NamedQuery(name = "TahsilatBorc.findByAboneSoyad", query = "SELECT t FROM TahsilatBorc t WHERE t.aboneSoyad = :aboneSoyad"),
@@ -45,6 +49,8 @@ public class TahsilatBorc implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
+    @SequenceGenerator(name = "borcseq",sequenceName = "SEQ_THS_BORC",initialValue = 1,allocationSize = 1)
+    @GeneratedValue(generator = "borcseg",strategy = GenerationType.SEQUENCE)
     private BigDecimal id;
     @Size(max = 100)
     @Column(name = "ABONE_NO")
@@ -64,16 +70,13 @@ public class TahsilatBorc implements Serializable {
     @Column(name = "FATURA_TUTAR")
     private BigDecimal faturaTutar;
     @Column(name = "FATURA_DURUM")
-    private Short faturaDurum;
+    private Integer faturaDurum;
     @JoinColumn(name = "KURUM_ID", referencedColumnName = "ID")
     @ManyToOne
-    private TahsilatKurum kurumId;
+    private TahsilatKurum kurum;
 
     public TahsilatBorc() {
-    }
-
-    public TahsilatBorc(BigDecimal id) {
-        this.id = id;
+        kurum=new TahsilatKurum();
     }
 
     public BigDecimal getId() {
@@ -132,20 +135,20 @@ public class TahsilatBorc implements Serializable {
         this.faturaTutar = faturaTutar;
     }
 
-    public Short getFaturaDurum() {
+    public Integer getFaturaDurum() {
         return faturaDurum;
     }
 
-    public void setFaturaDurum(Short faturaDurum) {
+    public void setFaturaDurum(Integer faturaDurum) {
         this.faturaDurum = faturaDurum;
     }
 
-    public TahsilatKurum getKurumId() {
-        return kurumId;
+    public TahsilatKurum getKurum() {
+        return kurum;
     }
 
-    public void setKurumId(TahsilatKurum kurumId) {
-        this.kurumId = kurumId;
+    public void setKurum(TahsilatKurum kurum) {
+        this.kurum = kurum;
     }
 
     @Override
