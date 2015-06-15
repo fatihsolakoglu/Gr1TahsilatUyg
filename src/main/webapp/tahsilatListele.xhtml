@@ -60,8 +60,17 @@
                         <p:column headerText="Tutar">
                              <p:outputLabel value="#{borc.faturaTutar}"/>
                         </p:column>
+                          
                         
                     </p:dataTable>
+                    
+                    <p:commandButton value="Excel" ajax="false">
+                        <p:dataExporter type="xls" target="faturaTablo" fileName="odenecekFaturalar"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="PDF" ajax="false">
+                        <p:dataExporter type="pdf" target="faturaTablo" fileName="odenecekFaturalar"/>
+                    </p:commandButton>
                     <br/>
                     <p:panelGrid columns="2">
                         

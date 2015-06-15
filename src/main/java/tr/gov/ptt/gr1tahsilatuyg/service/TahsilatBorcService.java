@@ -62,6 +62,15 @@ public class TahsilatBorcService {
        return tahsilatBorcFacade.borclariGetir(tahsilatKurumFacade.kurumIdBul(p_kurumAd), p_aboneNo);
     }
     
+    
+     public List chartVerisiGetir()
+    {
+        return tahsilatBorcFacade.chartVerisiGetir();
+        
+    }
+    
+    
+    
     @Resource
     UserTransaction userTransaction;
     public void seciliFaturalariOde(List<TahsilatBorc> p_secili_borclar,TahsilatKisi p_kisi)
