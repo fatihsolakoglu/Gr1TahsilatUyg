@@ -63,7 +63,7 @@ public class TahsilatBorcService {
     }
     
     
-     public List chartVerisiGetir()
+     public List<Object[]> chartVerisiGetir()
     {
         return tahsilatBorcFacade.chartVerisiGetir();
         

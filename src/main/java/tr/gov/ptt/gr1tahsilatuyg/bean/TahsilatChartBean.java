@@ -25,21 +25,45 @@ public class TahsilatChartBean {
    
    private List<Object[]> chartListe;
 
+    public List<Object[]> getChartListe() {
+        return chartListe;
+    }
+
+    public void setChartListe(List<Object[]> chartListe) {
+        this.chartListe = chartListe;
+    }
+   
+   
+
     public TahsilatChartBean() {
         pieChartModel=new PieChartModel();
+        pieChartModel.setLegendPosition("ne");
+        pieChartModel.setShowDataLabels(true);
+        pieChartModel.setTitle("Kurum Borç Grafiği");
         doldurChart();
     }
    
    public void doldurChart()
    {
-       chartListe=tahsilatBorcService.chartVerisiGetir();
+      chartListe=tahsilatBorcService.chartVerisiGetir();
        
        for (Object[] chartVeri : chartListe) {
            
          pieChartModel.set(String.valueOf(chartVeri[0]),Double.valueOf(chartVeri[1].toString()));
            
        }
+    
        
+      
    }
+
+    public PieChartModel getPieChartModel() {
+        return pieChartModel;
+    }
+
+    public void setPieChartModel(PieChartModel pieChartModel) {
+        this.pieChartModel = pieChartModel;
+    }
+   
     
 }

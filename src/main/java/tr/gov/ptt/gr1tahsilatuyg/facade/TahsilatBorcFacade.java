@@ -40,7 +40,10 @@ public class TahsilatBorcFacade extends AbstractFacade<TahsilatBorc> {
         List<Object[]> chartDeger = em.createNativeQuery("select kurum.ad, sum(borc.fatura_tutar) toplam_borc "
                 + "from THS_KURUM kurum, THS_BORC borc "
                 + "where kurum.id = borc.kurum_id "
-                + "group by kurum.ad;").getResultList();
+                + "group by kurum.ad").getResultList();
+        
+        
+        System.out.println("arrayin uzunluğuuuuu!!!!!!!!!!!"+chartDeger.size());
         
         return chartDeger;
         
