@@ -6,6 +6,7 @@
 package tr.gov.ptt.gr1tahsilatuyg.bean;
 
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -40,10 +41,11 @@ public class TahsilatChartBean {
         pieChartModel.setLegendPosition("ne");
         pieChartModel.setShowDataLabels(true);
         pieChartModel.setTitle("Kurum Borç Grafiği");
-        doldurChart();
+        
     }
    
-   public void doldurChart()
+   @PostConstruct
+    public void doldurChart()
    {
       chartListe=tahsilatBorcService.chartVerisiGetir();
        
@@ -52,9 +54,7 @@ public class TahsilatChartBean {
          pieChartModel.set(String.valueOf(chartVeri[0]),Double.valueOf(chartVeri[1].toString()));
            
        }
-    
-       
-      
+
    }
 
     public PieChartModel getPieChartModel() {
