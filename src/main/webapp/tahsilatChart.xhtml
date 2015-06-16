@@ -13,9 +13,14 @@
                 <h:form id="chartForm">
                     
                     <p:chart type="pie"
-                             model="#{chart.pieChartModel}"
+                             model="#{chart.pieChartModel}" id="grafik"
                              />
                     
+                    <p:poll interval="5" listener="#{chart.temizleGrafik()}" update="grafik grafik1"/>
+                    
+                    <br/>
+                    
+                    <p:graphicImage value="#{chart.jfreeChart}" id="grafik1" cache="false"/>                    
                 </h:form>
             </ui:define>
 
