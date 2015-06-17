@@ -26,6 +26,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -33,6 +34,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "THS_TAHSILAT")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ThsTahsilat.findAll", query = "SELECT t FROM ThsTahsilat t"),
     @NamedQuery(name = "ThsTahsilat.findById", query = "SELECT t FROM ThsTahsilat t WHERE t.id = :id"),
